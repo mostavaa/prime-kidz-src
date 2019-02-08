@@ -1,0 +1,25 @@
+﻿<div class="page-content h-100">
+    <div class="background theme-header"><img src="./../../assets/img/city2.jpg" alt=""></div>
+    <div class="row mx-0 h-100 justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4 my-3 mx-auto text-center align-self-center">
+            <img src="./../../assets/img/logo-w.png" alt="" class="login-logo">
+            <h1 class="login-title"><small><span appTranslator word="welcome"></span>,</small><br><span appTranslator word="appName"></span></h1>
+            <br>
+            <h5 class="text-white mb-4"><span appTranslator word="login"></span></h5>
+            <form [formGroup]="form">
+                <div class="login-input-content ">
+                    <div class="form-group">
+                        <input type="text" class="form-control rounded text-center" formControlName="username" [placeholder]="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control rounded text-center" formControlName="password" [placeholder]="password">
+                    </div>
+                    <a (click)="login()" [ngClass]="{'disabled':!form.valid}" class="btn btn-block btn-success rounded border-0 z-3"><span appTranslator word="login"></span></a>
+                </div>
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+    <br>
+</div>

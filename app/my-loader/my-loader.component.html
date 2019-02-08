@@ -1,0 +1,10 @@
+﻿<div id="preloader" *ngIf="loading">
+    <div id="spinner">
+        <img [@openClose]="isOpen ? 'open' : 'closed'" class="floating" src="../../assets/imgs/13.png" alt="">
+        <h5 class="line-height-50 font-18">
+            <span appTranslator word="loading"></span>. . .
+        </h5>
+
+    </div>
+    <!--<div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>-->
+</div>

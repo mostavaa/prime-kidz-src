@@ -1,0 +1,8 @@
+loader ? 
+design 
+services
+app name 
+footer 
+navbar 
+logo
+splash

@@ -1,0 +1,30 @@
+﻿<div class="page-content h-100">
+    <div class="background theme-header"><img src="./../../assets/img/city.jpg" alt=""></div>
+    <div class="row mx-0 h-100 justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4 my-3 mx-auto text-center align-self-center">
+            <img src="./../../img/logo-w.png" alt="" class="login-logo">
+            <br>
+            <br>
+            <h5 class="text-white mb-4"><span appTranslator word="changePassword"></span></h5>
+            <div class="login-input-content ">
+                <!--<p class="text-white">Please enter your old password which you have registered with us. Then enter a new password and confirm it.</p>-->
+                <form [formGroup]="form">
+                    <div class="form-group">
+                        <input type="password" formControlName="oldPassword" class="form-control rounded text-center" [placeholder]="oldPassword">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" formControlName="newPassword" class="form-control rounded text-center"  [placeholder]="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" formControlName="confirmPassword" class="form-control rounded text-center"  [placeholder]="confirmPassword">
+                    </div>
+                    <a (click)="changePassowrd()" [ngClass]="{'disabled':!form.valid}" class="btn btn-block btn-success rounded border-0 z-3"><span appTranslator word="changePassword"></span></a>
+                </form>
+            </div>
+            <br>
+            <br>
+
+        </div>
+    </div>
+    <br>
+</div>

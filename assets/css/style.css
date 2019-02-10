@@ -644,7 +644,7 @@ header a {
     border: 0;
 }
 
-.btn-warning,
+/*.btn-warning,
 .gradient-warning {
     background-color: #ffc617;
     background-image: -webkit-linear-gradient(to top, #ffc617, #F2994A);
@@ -657,7 +657,7 @@ header a {
     -webkit-box-shadow: 0px 3px 15px #ffc617;
     color: #ffffff;
     border: 0;
-}
+}*/
 
 .btn-success,
 .gradient-success {

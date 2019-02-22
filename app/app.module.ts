@@ -20,9 +20,10 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { DialogService } from './services/dialog.service';
 import { KidService } from './services/kids.service';
 import { CookieService } from 'ngx-cookie-service';
+import { TextOverloadPipe } from './text-overload.pipe';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, TextOverloadPipe],
     entryComponents: [],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, SharedModule, HttpClientModule],
     providers: [
@@ -37,11 +38,11 @@ import { CookieService } from 'ngx-cookie-service';
         DialogService,
         KidService,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        }
+        //{
+        //    provide: HTTP_INTERCEPTORS,
+        //    useClass: TokenInterceptor,
+        //    multi: true
+        //}
     ],
     bootstrap: [AppComponent]
 })

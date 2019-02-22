@@ -44,6 +44,8 @@ export class LanguageService {
             cancel: 'الغاء',
             confirmPasswordNotMatch: 'الكلمة السرية غير مطابقة',
             welcome: 'مرحبا بكم في',
+            wrongUser: "اسم المستخدم او كلمة السر خطأ!",
+
         },
         en: {
             appName: 'Overux',
@@ -87,7 +89,7 @@ export class LanguageService {
             cancel: 'Cancel',
             confirmPasswordNotMatch: 'Passwords Arn\'t Identical',
             welcome: 'Welcome to',
-            
+            wrongUser:"Wrong User Name or Password !",
         }
     };
     switchLanguage(): any {

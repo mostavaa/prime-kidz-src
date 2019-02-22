@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpService {
@@ -12,7 +11,7 @@ export class HttpService {
    * Invoke function should be able to handle any HTTP request based on the @params
    */
     invoke(params): Observable<any> {
-
+        
     this.requestCounts++;
     if (params) {
       const method = params.method.toLowerCase();
@@ -27,8 +26,8 @@ export class HttpService {
       /**
        * DEFAULT HEADERS
        */
-      requestHeaders = requestHeaders.set('Content-Type', 'application/json');
-
+        requestHeaders = requestHeaders.set('Content-Type', 'application/json');
+        requestHeaders = requestHeaders.set('Access-Control-Allow-Origin', '*');
       /**
        * CUSTOM HEADERS
        */

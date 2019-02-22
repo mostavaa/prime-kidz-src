@@ -11,7 +11,7 @@ import { Constants } from './constants.service';
 export class TokenInterceptor implements HttpInterceptor {
     constructor(private userService: UserService, private languageService: LanguageService, private cookieService: CookieService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any> | any> {
-        let handling = next.handle(request.clone({ setHeaders: { Authorization: `Bearer ${this.userService.getAuthToken()}` } }))
+        let handling = next.handle(request.clone({ setHeaders: { Authorization: `Bearer ${this.userService.getAuthToken()}`} }))
         if (this.languageService.isEnglish())
             this.cookieService.set("lang", Constants.english);
         else 

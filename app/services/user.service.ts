@@ -28,7 +28,7 @@ export class UserService {
             }
         });
     }
-    private getCurrentUser() {
+    getCurrentUser(): User {
         let user = localStorage.getItem("currentUser");
         if (user) {
             return <User>JSON.parse(user);

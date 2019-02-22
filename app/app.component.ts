@@ -7,6 +7,8 @@ import { LoadingService } from './services/loading.service';
 import { LanguageService } from './services/language.service';
 import { AuthService } from './services/auth.service';
 import { Router, NavigationEnd, RoutesRecognized } from '@angular/router';
+import { UserService } from './services/user.service';
+import { User } from './models/user.model';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class AppComponent implements OnInit {
         private loadingService: LoadingService,
         private languageService: LanguageService,
         private authService: AuthService,
-        private router: Router
+        private userService: UserService,
+        private router: Router,
+
     ) {
         this.initializeApp();
      
@@ -38,6 +42,7 @@ export class AppComponent implements OnInit {
             }
         });
         this.isEnglish = this.languageService.isEnglish();
+        this.getLoggedUser();
     }
     initializeApp() {
         this.platform.ready().then(() => {
@@ -51,7 +56,7 @@ export class AppComponent implements OnInit {
     }
     logout() {
         this.authService.logout();
-        location.reload();
+        location.href = '/login';
     }
     switchLanguage() {
         this.languageService.switchLanguage();
@@ -66,4 +71,14 @@ export class AppComponent implements OnInit {
         let logged = this.authService.isLogged()
         return logged;
     }
+    loggedUser: User
+    getLoggedUser() {
+        if (this.isLogged()) {
+            let user = this.userService.getCurrentUser();
+            if (user) {
+                this.loggedUser = user;
+            }
+        }
+    }
+
 }

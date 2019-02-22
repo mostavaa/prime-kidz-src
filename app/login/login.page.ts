@@ -56,11 +56,14 @@ export class LoginPage implements OnInit {
         this.authService.login(new User(this.form.value.username, this.form.value.password, '', ''))
             .subscribe(token => {
                 debugger;
-                this.successLogin(token)
+                if (token)
+                    this.successLogin(token.data.token)//to be changed later
             }, error => {
                 debugger;
+                console.log(error);
                 this.loaderService.hideLoading();
-                this.dialogService.showErrorAlert(this.languageService.translate('error'))
+                this.dialogService.showErrorAlert(this.languageService.translate('wrongUser'));
+                this.authService.logout();
             });
     }
     successLogin(token) {
@@ -69,6 +72,6 @@ export class LoginPage implements OnInit {
             this.navCtrl.navigateRoot('kids');
         }
         this.loaderService.hideLoading();
-        location.reload();
+        location.href = '';
     }
 }

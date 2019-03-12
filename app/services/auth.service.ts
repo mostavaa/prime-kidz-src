@@ -22,11 +22,11 @@ export class AuthService {
     login(user: User) {
         
             return this.httpService.invoke({
-                method: 'POST',
+                method: 'GET',
                 url: Constants.webURL,
-                path: 'Accounts/Login',
-                //path: 'Parent/Account/Get',
-                body: {
+                //path: 'Accounts/Login',
+                path: 'Parent/Account/Get',
+                query: {
                     username: user.username,
                     password: user.password
                 }

@@ -15,7 +15,7 @@ export class HttpService {
     this.requestCounts++;
     if (params) {
       const method = params.method.toLowerCase();
-      const { url, path, body, headers, query } = params;
+      const { url, path, body, query } = params;
 
       const requestURL = `${url}/${path}`;
 
@@ -28,16 +28,7 @@ export class HttpService {
        */
         requestHeaders = requestHeaders.set('Content-Type', 'application/json');
         requestHeaders = requestHeaders.set('Access-Control-Allow-Origin', '*');
-      /**
-       * CUSTOM HEADERS
-       */
-      if (headers) {
-        for (const key in headers) {
-          if (headers.hasOwnProperty(key)) {
-            requestHeaders = requestHeaders.append(key, headers[key]);
-          }
-        }
-      }
+
 
       /**
        * CUSTOM REQUEST QUERY (?key=value)
@@ -51,8 +42,9 @@ export class HttpService {
       }
 
       const requestOptions = {
-        headers: requestHeaders,
-        params: requestParams,
+        //headers: requestHeaders,
+          params: requestParams,
+          responseType: 'text'
       };
 
       /**
@@ -66,11 +58,6 @@ export class HttpService {
           JSON.stringify(body),
           requestOptions,
         );
-      } else if (method === 'delete') {
-        request = this.http.request(method, requestURL, {
-          ...requestOptions,
-          body: JSON.stringify(body),
-        });
       } else {
         console.error('Unknown request method.');
       }

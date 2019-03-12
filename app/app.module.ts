@@ -38,11 +38,11 @@ import { TextOverloadPipe } from './text-overload.pipe';
         DialogService,
         KidService,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        //{
-        //    provide: HTTP_INTERCEPTORS,
-        //    useClass: TokenInterceptor,
-        //    multi: true
-        //}
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

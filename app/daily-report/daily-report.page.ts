@@ -43,13 +43,21 @@ export class DailyReportPage implements OnInit {
         })
         this.kidService.kidSubject.subscribe(kids => {
             let allKids = kids;
+            let kidIndex = -1;
             if (this.selectedId && this.selectedId != '') {
-                let kidIndex =allKids.findIndex(o => { return o.id == this.selectedId });
+                debugger;
+                kidIndex = allKids.findIndex(o => { return o.id == this.selectedId });
                 if (kidIndex > -1) {
                     this.selectedKid = allKids[kidIndex];
                 }
             }
             this.kids = allKids;
+            if (kidIndex > -1) {
+                this.searchActivities(this.selectedId);
+                this.form.patchValue({
+                    'kid': this.selectedId
+                });
+            }
         })
         this.kidService.activitiesSubject.subscribe(
             res => {
@@ -65,17 +73,17 @@ export class DailyReportPage implements OnInit {
         this.cancelText = this.languageService.translate('cancel');
 
     }
-    searchActivities() {
+    searchActivities(kidId?: string) {
         console.log(this.form.value.date);
         console.log(this.form.value.kid);
-        if (this.form.value.kid && this.form.value.date)
-            this.kidService.getKidActivity(this.form.value.kid, this.convertDate());
+        if ((this.form.value.kid || kidId) && this.form.value.date)
+            this.kidService.getKidActivity(kidId ? kidId : this.form.value.kid, this.convertDate());
     }
     absent: boolean = false;
     noAct: boolean = false;
     act: boolean = false;
     private processActivities() {
-        
+
         this.absent = this.noAct = this.act = false;
         if (this.activites.IsPublished == false) {
             this.noAct = true;

@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
     ) {
         this.initializeApp();
-     
+
     }
     ngOnInit() {
         this.isLoginPage = false;
@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
         });
     }
     Navigate(route: string) {
-        this.navCtrl.navigateRoot(route);
         this.menueCtrl.close();
+        this.navCtrl.navigateRoot(route);
     }
     logout() {
         this.authService.logout();

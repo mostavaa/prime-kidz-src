@@ -18,7 +18,7 @@
                             <span appTranslator word="kidName"></span>
                         </label>
                         <select formControlName="kid" class="form-control" (change)="searchActivities()" id="exampleFormControlSelect1">
-                            <option [value]="kid.id" [selected]="(selectedKid && kid.id == selectedKid.id)" *ngFor="let kid of kids">{{kid.Name}}</option>
+                            <option [value]="kid.id" [selected]="(selectedId && (kid.id == selectedId))" *ngFor="let kid of kids">{{kid.Name}}</option>
                         </select>
                     </div>
                 </form>

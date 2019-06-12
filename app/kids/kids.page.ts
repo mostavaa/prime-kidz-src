@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { KidService } from '../services/kids.service';
 import { Kid } from '../models/kid.model';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
     selector: 'app-kids',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class KidsPage implements OnInit {
     kids: Kid[];
-    constructor(private kidService: KidService, private router: Router) { }
+    constructor(private kidService: KidService, private router: Router, private navCtrl: NavController) { }
 
     ngOnInit() {
         this.kidService.kidSubject.subscribe(kids => {
@@ -20,6 +21,6 @@ export class KidsPage implements OnInit {
         this.kidService.getAll();
     }
     navigateToDailyReport(kid: Kid) {
-        this.router.navigate(['/daily-report', 'kid',kid.id]);
+        this.navCtrl.navigateRoot(['/daily-report', 'kid', kid.id]);
     }
 }

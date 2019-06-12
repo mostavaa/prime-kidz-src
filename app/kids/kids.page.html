@@ -7,9 +7,9 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <figure class="avatar avatar-80 mb-3" title="Malaika Bhavtar"><img src="../../assets/imgs/1.png" alt=""> </figure>
-                        <h6>Kid2</h6>
+                        <h6>{{kid.Name}}</h6>
                         <p class="text-secondary">
-                            <span appTranslator word="nursary"></span>
+                            {{kid.nursary}}
                         </p>
                         <a (click)="navigateToDailyReport(kid)" class="btn btn-block btn-warning btn-sm rounded">
                             <span appTranslator word="dailyReport"></span>
@@ -24,51 +24,8 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-0 mb-3">
-            <div class="col-12 mb-8">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <figure class="avatar avatar-80 mb-3" title="Malaika Bhavtar"><img src="../../assets/imgs/1.png" alt=""> </figure>
-                        <h6>Kid2</h6>
-                        <p class="text-secondary">
-                            <span appTranslator word="nursary"></span>
-                        </p>
-                        <a class="btn btn-block btn-warning btn-sm rounded">
-                            <span appTranslator word="dailyReport"></span>
-                        </a>
-                        <a class="btn btn-block disabled btn-info btn-sm rounded">
-                            <span appTranslator word="notifications"></span>
-                        </a>
-                        <a class="btn btn-block disabled btn-success btn-sm rounded">
-                            <span appTranslator word="monthlyReport"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-        <div class="row mx-0 mb-3">
-            <div class="col-12 mb-8">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <figure class="avatar avatar-80 mb-3" title="Malaika Bhavtar"><img src="../../assets/imgs/1.png" alt=""> </figure>
-                        <h6>Kid1</h6>
-                        <p class="text-secondary">
-                            <span appTranslator word="nursary"></span>
-                        </p>
-                        <a class="btn btn-block btn-warning btn-sm rounded">
-                            <span appTranslator word="dailyReport"></span>
-                        </a>
-                        <a class="btn btn-block disabled btn-info btn-sm rounded">
-                            <span appTranslator word="notifications"></span>
-                        </a>
-                        <a class="btn btn-block disabled btn-success btn-sm rounded">
-                            <span appTranslator word="monthlyReport"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </div>
     <div class="footer-wrapper shadow-15">
         <div class="footer">

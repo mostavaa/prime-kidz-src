@@ -1,3 +1,3 @@
 export class Kid {
-    constructor(public id,public Name) {}
+    constructor(public id,public Name , public nursary) {}
 }

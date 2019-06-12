@@ -4,11 +4,11 @@ import { ActivityType } from "./activityType.model";
 
 export class Activities {
     kid: Kid = null;
-    isPublished: boolean = false;
-    activities: Activity[] = [];
-    activityTypes: ActivityType[] = [];
-    isKidWithDefault: boolean= false;
-    isCurrentKidAbsent: boolean= false;
+    IsPublished: boolean = false;
+    Activities: Activity[] = [];
+    ActivityTypes: ActivityType[] = [];
+    IsKidWithDefault: boolean= false;
+    IsCurrentKidAbsent: boolean= false;
     constructor() {
 
     }

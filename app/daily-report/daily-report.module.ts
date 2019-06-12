@@ -10,25 +10,25 @@ import { SharedModule } from '../shared.module';
 import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 const routes: Routes = [
-  {
-    path: '/:id',
-    component: DailyReportPage
+    {
+        path: 'kid/:id',
+        component: DailyReportPage
     },
     {
         path: '',
         component: DailyReportPage
-    }
+    },
 ];
 
 @NgModule({
-  imports: [
-      CommonModule,
-      ReactiveFormsModule,
-      DlDateTimePickerDateModule,
-    IonicModule,
-      RouterModule.forChild(routes),
-      SharedModule
-  ],
-  declarations: [DailyReportPage]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        DlDateTimePickerDateModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+        SharedModule
+    ],
+    declarations: [DailyReportPage]
 })
-export class DailyReportPageModule {}
+export class DailyReportPageModule { }

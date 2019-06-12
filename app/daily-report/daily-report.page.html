@@ -11,97 +11,54 @@
                             <span appTranslator word="dayOfActivity"></span>
                         </label>
                         <!--<input formControlName="date" type="date" (change)="searchActivities()" class="form-control" id="textinput">-->
-                        <dl-date-time-picker formControlName="date" #f maxView="year" minView="day" (change)="searchActivities(f)"></dl-date-time-picker>
-
+                        <dl-date-time-picker formControlName="date" #f maxView="year" minView="day" (change)="searchActivities()"></dl-date-time-picker>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">
                             <span appTranslator word="kidName"></span>
                         </label>
                         <select formControlName="kid" class="form-control" (change)="searchActivities()" id="exampleFormControlSelect1">
-                            <option value="kid1">kid1</option>
-                            <option [value]="kid.id" [selected]="kid.id == selectedId" *ngFor="let kid of kids">{{kid.name}}</option>
+                            <option [value]="kid.id" [selected]="(selectedKid && kid.id == selectedKid.id)" *ngFor="let kid of kids">{{kid.Name}}</option>
                         </select>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="row mx-0 mb-3 mt-3">
+        <div class="row mx-0 mb-3 mt-3" *ngIf="act">
             <div class="col-12 mb-8">
-                <div class="card">
+                <div class="card" *ngFor="let group of groupedActivities">
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
-                                <h5 class="card-title">Health care activities</h5>
+                                <h5 class="card-title">{{isArabic?group.TypeTitleAr:group.TypeTitleEn}}</h5>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <a class="media m-3">
+                        <a class="media m-3" *ngFor="let activity of group.activities">
                             <div class="w-auto h-100">
-                                <figure class="avatar avatar-70"><img src="./../../assets/img/user2.png" alt=""> </figure>
+                                <figure class="avatar avatar-70"><img [src]="'http://primekidz.com'+activity.Icon" alt=""> </figure>
                             </div>
-
                             <div class="media-body">
-                                <h5 class="mb-0">only one item selected</h5>
-
+                                <h5 class="mb-0">{{isArabic?activity.TitleAr:activity.TitleEn}}</h5>
                                 <div class="btn-group btn-group-sm btn-toolbar mt-2 mr-2 mb-2" role="group" aria-label="Second group">
-                                    <a class="mt-1 btn  ">5</a>
-                                    <a class="mt-1 btn btn-warning active">6</a>
-                                    <a class="mt-1 btn btn- ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="media m-3">
-                            <div class="w-auto h-100">
-                                <figure class="avatar avatar-70"><img src="./../../assets/img/user2.png" alt=""> </figure>
-                            </div>
-
-                            <div class="media-body">
-                                <h5 class="mb-0">only one item selected</h5>
-
-                                <div class="btn-group btn-group-sm btn-toolbar mt-2 mr-2 mb-2" role="group" aria-label="Second group">
-                                    <a class="mt-1 btn  ">5</a>
-                                    <a class="mt-1 btn btn-warning active">6</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                    <a class="mt-1 btn  ">7</a>
-                                </div>
-                            </div>
-                        </a>
-                        <a class="media m-3">
-                            <div class="w-auto h-100">
-                                <figure class="avatar avatar-70"><img src="./../../assets/img/user2.png" alt=""> </figure>
-                            </div>
-
-                            <div class="media-body">
-                                <h5 class="mb-0">All Items selected</h5>
-
-                                <div class="btn-group btn-group-sm btn-toolbar mt-2 mr-2 mb-2" role="group" aria-label="Second group">
-                                    <a class="mt-1 btn btn-warning active">5</a>
-                                    <a class="mt-1 btn btn-warning active">6</a>
-                                    <a class="mt-1 btn btn-warning active">7</a>
-                                    <a class="mt-1 btn btn-warning active">7</a>
-                                    <a class="mt-1 btn btn-warning active">7</a>
-                                    <a class="mt-1 btn btn-warning active">7</a>
-                                    <a class="mt-1 btn btn-warning active">7</a>
+                                    <span *ngIf="activity.ColumnType=='Checkbox'">
+                                        <span *ngFor="let answer of activity.Answers">
+                                            <a *ngIf="answer.IsDefault==true" class="mt-1 btn btn-warning active">{{isArabic?answer.TitleAr:answer.TitleEn}}</a>
+                                        </span>
+                                    </span>
+                                    <span *ngIf="activity.ColumnType=='Radio'">
+                                        <a class="mt-1 btn  " [ngClass]="{'btn-warning active':answer.IsDefault==true}" *ngFor="let answer of activity.Answers">{{isArabic?answer.TitleAr:answer.TitleEn}}</a>
+                                    </span>
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-
         </div>
 
-
-        <div class="row mx-0 mb-3 mt-3 ">
+        <div class="row mx-0 mb-3 mt-3 " *ngIf="absent">
             <div class="col-12 mb-8">
                 <div class="card">
                     <div class="card-header">
@@ -113,7 +70,6 @@
                     </div>
                     <div class="card-body text-center">
                         <figure class="avatar avatar-80 mb-3" title="Malaika Bhavtar"><img src="../../assets/imgs/1.png" alt=""> </figure>
-
                         <h6 class="">
                             <span appTranslator word="childAbsent"></span>
                         </h6>
@@ -124,17 +80,14 @@
                 </div>
             </div>
         </div>
-
-        <div class="row mx-0 mb-3 mt-3 ">
+        <div class="row mx-0 mb-3 mt-3 " *ngIf="noAct">
             <div class="col-12 mb-8">
                 <div class="card">
                     <div class="card-body text-center">
                         <figure class="avatar avatar-80 mb-3" title="Malaika Bhavtar"><img src="../../assets/imgs/1.png" alt=""> </figure>
-
                         <h6 class="">
                             <span appTranslator word="noActivities"></span>
                         </h6>
-
                     </div>
                 </div>
             </div>

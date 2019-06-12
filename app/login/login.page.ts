@@ -53,9 +53,12 @@ export class LoginPage implements OnInit {
 
         this.authService.login(new User(this.form.value.username, this.form.value.password, '', ''))
             .subscribe(token => {
+                debugger;
                 if (token)
-                    this.successLogin(token)
+                    this.successLogin(token);
+                this.loaderService.hideLoading();
             }, error => {
+                debugger;
                 console.log(error);
                 this.loaderService.hideLoading();
                 this.dialogService.showErrorAlert(this.languageService.translate('wrongUser'));

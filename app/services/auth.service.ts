@@ -17,20 +17,16 @@ export class AuthService {
         private dialogService: DialogService,
         private languageService: LanguageService,
         private navCtrl: NavController
-    ) {}
+    ) { }
 
     login(user: User) {
-        
-            return this.httpService.invoke({
-                method: 'GET',
-                url: Constants.webURL,
-                //path: 'Accounts/Login',
-                path: 'Parent/Account/Get',
-                query: {
-                    username: user.username,
-                    password: user.password
-                }
-            })
+
+        return this.httpService.invoke({
+            method: 'POST',
+            url: Constants.webURL,
+            //path: 'Accounts/Login',
+            path: 'Parent/Account/Get?username=' + user.username + '&password=' + user.password
+        })
 
 
         return null;

@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HttpService {
   requestCounts: number = 0;
-  constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+    ) { }
 
   /**
    * Invoke function should be able to handle any HTTP request based on the @params
@@ -26,9 +28,10 @@ export class HttpService {
       /**
        * DEFAULT HEADERS
        */
-        requestHeaders = requestHeaders.set('Content-Type', 'application/json');
-        requestHeaders = requestHeaders.set('Access-Control-Allow-Origin', '*');
-
+        //requestHeaders = requestHeaders.set('Content-Type', 'application/json');
+        //requestHeaders = requestHeaders.set('Content-Type', 'application/json');
+      //  if (this.authService.isLogged())
+        
 
       /**
        * CUSTOM REQUEST QUERY (?key=value)

@@ -31,18 +31,19 @@ import { TextOverloadPipe } from './text-overload.pipe';
         SplashScreen,
         LoadingService,
         LanguageService,
+        HttpService,
         UserService,
         AuthService,
-        HttpService,
+
         CookieService,
         DialogService,
         KidService,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        }
+        //{
+        //    provide: HTTP_INTERCEPTORS,
+        //    useClass: TokenInterceptor,
+        //    multi: true
+        //}
     ],
     bootstrap: [AppComponent]
 })

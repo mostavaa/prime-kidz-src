@@ -19,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
         let handling: any;
         if (this.authService.isLogged())
-            handling = next.handle(request.clone({ setHeaders: { Authorization: `Bearer ${this.userService.getAuthToken()}` } }))
+            handling = next.handle(request.clone({ setHeaders: { Authorization: `${this.userService.getAuthToken()}` } }))
         else
             handling = next.handle(request)
 

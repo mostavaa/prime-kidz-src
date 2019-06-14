@@ -43,8 +43,8 @@ export class UserService {
         return '';
     }
     isTokenExpired() {
-        let token = this.getAuthToken()
-        if (!token || token == "") return true
+        let token = this.getAuthToken();
+        if (!token || token == "") return true;
         const decoded = jwt_decode(token);
         if (decoded.exp === undefined) return true;
         const date = new Date(0);

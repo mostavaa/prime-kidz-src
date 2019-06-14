@@ -6,6 +6,7 @@ import { Kid } from '../models/kid.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Activities } from '../models/activities.model';
 import { Activity } from '../models/activity.model';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
     selector: 'app-daily-report',
@@ -22,7 +23,12 @@ export class DailyReportPage implements OnInit {
     form: FormGroup
     activites: Activities = null;
     isArabic: boolean = true;
-    constructor(private languageService: LanguageService, private route: ActivatedRoute, private kidService: KidService) {
+    constructor(
+        private languageService: LanguageService,
+        private route: ActivatedRoute,
+        private kidService: KidService,
+        private loadingService: LoadingService
+    ) {
         this.initForm();
     }
     initForm() {
@@ -41,32 +47,35 @@ export class DailyReportPage implements OnInit {
 
             }
         })
+        this.loadingService.showLoading();
         this.kidService.kidSubject.subscribe(kids => {
-            let allKids = kids;
-            let kidIndex = -1;
-            if (this.selectedId && this.selectedId != '') {
-                debugger;
-                kidIndex = allKids.findIndex(o => { return o.id == this.selectedId });
+            if (kids) {
+                let allKids = kids;
+                let kidIndex = -1;
+                if (this.selectedId && this.selectedId != '') {
+                    kidIndex = allKids.findIndex(o => { return o.id == this.selectedId });
+                    if (kidIndex > -1) {
+                        this.selectedKid = allKids[kidIndex];
+                    }
+                }
+                this.kids = allKids;
                 if (kidIndex > -1) {
-                    this.selectedKid = allKids[kidIndex];
+                    this.searchActivities(this.selectedId);
+                    this.form.patchValue({
+                        'kid': this.selectedId
+                    });
                 }
             }
-            this.kids = allKids;
-            if (kidIndex > -1) {
-                this.searchActivities(this.selectedId);
-                this.form.patchValue({
-                    'kid': this.selectedId
-                });
-            }
+            this.loadingService.hideLoading();
         })
         this.kidService.activitiesSubject.subscribe(
             res => {
-                this.activites = res;
-                this.processActivities();
+                this.loadingService.hideLoading();
+                if (res) {
+                    this.activites = res;
+                    this.processActivities();
+                }
             },
-            err => {
-
-            }
         );
         this.kidService.getAll();
         this.okText = this.languageService.translate('ok')
@@ -74,10 +83,11 @@ export class DailyReportPage implements OnInit {
 
     }
     searchActivities(kidId?: string) {
-        console.log(this.form.value.date);
-        console.log(this.form.value.kid);
-        if ((this.form.value.kid || kidId) && this.form.value.date)
+
+        if ((this.form.value.kid || kidId) && this.form.value.date) {
+            this.loadingService.showLoading();
             this.kidService.getKidActivity(kidId ? kidId : this.form.value.kid, this.convertDate());
+        }
     }
     absent: boolean = false;
     noAct: boolean = false;

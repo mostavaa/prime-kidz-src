@@ -36,10 +36,9 @@ export class KidService {
             this.kids = [];
             var result = eval(res);
             for (var i = 0; i < result.length; i++) {
-                let kid: Kid = new Kid(result[i].Id, result[i].Name, result[i].Hadana);
+                let kid: Kid = new Kid(result[i].Id, result[i].Name, result[i].Hadana, result[i].Logo);
                 this.kids.push(kid);
             }
-            debugger;
             this.kidSubject.next(this.kids);
         }, error => {
             this.dialogService.showErrorAlert(this.languageService.translate('error'));
@@ -55,9 +54,8 @@ export class KidService {
             let result = JSON.parse(res);
             this.activites = result;
             this.activitiesSubject.next(this.activites);
-            debugger;
         }, error => {
-            
+            this.activitiesSubject.next(null);
             this.dialogService.showErrorAlert(this.languageService.translate('error'));
         });
     }

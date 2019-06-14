@@ -63,10 +63,7 @@ export class AppComponent implements OnInit {
         this.menueCtrl.close();
         location.reload();
     }
-    showLoader() {
-        this.loadingService.showLoading();
-        setTimeout(() => this.loadingService.hideLoading(), 5000);
-    }
+
     isLogged() {
         let logged = this.authService.isLogged()
         return logged;

@@ -21,6 +21,7 @@ import { DialogService } from './services/dialog.service';
 import { KidService } from './services/kids.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TextOverloadPipe } from './text-overload.pipe';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
     declarations: [AppComponent, TextOverloadPipe],
@@ -34,7 +35,7 @@ import { TextOverloadPipe } from './text-overload.pipe';
         HttpService,
         UserService,
         AuthService,
-
+        FCM,
         CookieService,
         DialogService,
         KidService,
